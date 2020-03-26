@@ -5,8 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Question1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="550">
+
     <Grid>
-        
+        <DataGrid Name="dataGrid" Margin="10" Width="300" HorizontalAlignment="Left" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Element" Width="270" Binding="{Binding Mode=OneWay}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button 
+            x:Name="ButtonGenerateRandomIntegers" Click="ButtonGenerateRandomIntegers_Click"
+            Content="Generate Random Integers" HorizontalAlignment="Left" Margin="320,10,10,10" VerticalAlignment="Top" Height="30" Width="150"/>
+        <Button 
+            x:Name="ButtonGenerateRandomDoubles" Click="ButtonGenerateRandomDoubles_Click"
+            Content="Generate Random Doubles" HorizontalAlignment="Left" Margin="320,60,0,0" VerticalAlignment="Top" Height="30" Width="150"/>
+        <TextBox 
+            x:Name="SearchKeyTextBox"
+            HorizontalAlignment="Left" Height="30" Margin="320,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" />
+        <TextBlock FontSize="12" IsHitTestVisible="False" Text="Enter Search Key Here" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="320,150,0,0" Foreground="DarkGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=SearchKeyTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Button Content="Search" Name="ButtonSearch" Click="ButtonSearch_Click" HorizontalAlignment="Left" Margin="320,200,0,0" VerticalAlignment="Top" Width="150" Height="30"/>
+        <TextBlock Name="SearchResult" Margin="320,250,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="30" FontSize="12" FontWeight="Bold" />
+
     </Grid>
 </Window>
